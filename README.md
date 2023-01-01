@@ -1,5 +1,103 @@
 # learnJS
+## ExecutionContext
+* When code is executed an execution is created. There are two Phase in execution.
+    * Memory creation phase
+        - Allocate memory to all var and func.
+        - in case of variable or arrow function it will hoist the variable and assigned it to undefined
+        - in case of function it will hoist the function with all its definition.
+    * Code execution phase
+        - Execute the whole code line by line.
+        - Here it will populate the correct value of varibles and arrow function.
+        - when a function invocation comes it will create a whole new execution context with both the phase.
+* Even for blank JS file engine will create GCE create window keyword and this keyword which will point to window.        
+```js
+// Start of file -> create a global execution context
+var x=1;
+a() //10    // function invoked -> will create a new execution context.
+            // this context will have access to all global variable + its own variable
+            // it will overide x for its own context
+            
+// Execution context of 'a' if removed from stack 
+// even though it is deleted along with all its local variable, it return a function which uses local value. therefore the function will still have access to local variable (lexical env)
+//Now we are in global context and value of 'x' is 1 again.
+ 
 
+
+b() //100
+console.log('global :' ,x) //1
+
+
+ function a (){
+    var x=10
+    console.log('function a :' ,x)
+    let lex= 20
+    return function(){console.log(lex}
+ }
+
+
+ function b(){
+    var x=100
+    console.log('function b :' ,x)
+ }
+
+
+ //OUTPUT
+//function a : 10
+//function b : 100
+//global : 1
+ ```
+## Lexical Environment
+* local environment along with lexical env of its parent.
+* Block B will have refrence of Block A and A will have reference of GCE and GCE will point to null
+    * Scope chain -> looking for variable in parents
+* let and const will always store in local environment. (lexical = local +lexical of parents)
+* child block will have access to lexical variable of parents.(block B will have access to myVar)
+
+![1](https://user-images.githubusercontent.com/45531263/210160827-876fd043-522f-4dc6-ac77-e6f639ee2c22.png)
+* Scope chain -> looking for variable in parents
+
+## Temporal DeadZone
+* let and const are not hoisted in global scope rather local(script) scope
+* We cannot access them until they are initialized
+* even though they are undefined and hoiste, but they are in different scope then global
+* Once initialized, they will still remain in different scope but accessible
+```js
+console.log(a) //undefined
+console.log(b) // error ->Uncaught ReferenceError: Cannot access 'b' before initialization
+var a=1  
+let b=2  
+```
+* firstName is 'let' therefore it will be hoisted in script scope.
+![2](https://user-images.githubusercontent.com/45531263/210160836-34264d5a-6e2a-438f-be5b-9ee3f8865016.png)
+
+
+
+## Shadowing and illegal shadowing
+```js
+var a=10
+{
+    var a=100 // this scope has override value of a, for this scope only
+}
+// here value will be 10 again.
+```
+
+### Illegal shadowing
+```js
+let a=10
+{
+    var a=100  // we cannot shadow let with var since var is global, block does not make any difference.
+}
+
+```
+* However it is legal to shadow let with another let in sifferent scope/block
+```js
+let a=10
+{
+    let a=100 //let is in another scope
+}
+// here value will be 10 again.
+```
+*****************************************
 ## Function Borrowing
 * polyfill is fallback for browser func
 * call ->  func.call(context,args)
