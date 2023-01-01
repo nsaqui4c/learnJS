@@ -82,6 +82,8 @@ var a=10
 ```
 
 ### Illegal shadowing
+* we cannot declare let or const twice in same lexical env
+   * creating new block '{}' will create new lexical env
 ```js
 let a=10
 {
@@ -93,7 +95,7 @@ let a=10
 ```js
 let a=10
 {
-    let a=100 //let is in another scope
+    let a=100 //let is in another scope/lexical env
 }
 // here value will be 10 again.
 ```
