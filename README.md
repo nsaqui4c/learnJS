@@ -114,7 +114,152 @@ firstName='Tony'  // Not allowed, as we are binding/assigning new memory locatio
 const user={firstName:'Anthony'}
 user.firstName='tony' //Allowed because const is pointing to same memory, we are changing the value of object
 ```
+### Template String/literals
+* using backtick '`' to create template literals
+* we can create multiline string using this feature, as it also make sure to render 'enter'
+```js
+'name/nyour' 
+//is equal to 
+`name
+ your`
+ ```
+ * If we are passing template literals as argument to function, then we do not need to wrap the argument in bracket.
+ ```js
+ function greet(string, first , last){
+   console.log(strings,first, last)
+  }
+ const first= 'Anthony'
+ const last= 'last' 
+ const greet = greeting`Hello, ${first} ${last}`
+ console.log(greet)
+ // POINT TO NOTE
+ //string will not jsut be 'Hello, ' but will be an array ['Hello, ' , ' ','']
+ //because ${first} and ${last} will get interpolated leaving some chracters, which will be part of string
+ ```
+ * string will not jsut be 'Hello, ' but will be an array ['Hello, ' , ' ','']
+ * because ${first} and ${last} will get interpolated leaving some chracters, which will be part of string
 
+
+## class
+* class is nothing but a function, with just one additional property -> isClassConstructor=true
+   * this additional property makes invoking the function only through 'new' keyword.
+   * new keyword will create new instance of object.
+   
+* constructor: 
+   * 
+```js
+class Person{
+}
+let p= class{
+}
+typeOf(p)   -> function
+
+//INVOKING
+let me = new Person()  // invoking using new keyword
+
+
+//CONSTRUCTOR
+class Person{
+   constructor(name)
+   {
+   this.firstName= name;   // we do need to explicitly provide field name
+   }
+}
+//////////////////////////////////////////////
+class Person{
+   firstName // good to define field names
+   constructor(name)
+   {
+   this.firstName= name; 
+   }
+}
+```
+* static keyword will create variable attach to class not to any instance/object
+```js
+
+//static key word
+class Person{
+   firstName // good to define field names
+   constructor(name)
+   {
+   this.firstName= name; 
+   }
+   greet(){
+   return `welcome ${firstName}`
+   }
+   static residence='Earth'
+}
+let me = new Person()
+console.log(Person.residence)  //Earth
+console.log(me.residence) // Error not found
+
+```
+* private variable with getter and setter
+   * just add # ini front of variable and it will not be accessible from ouside of class
+   * we can make function private also using #
+```js
+class Person{
+   #firstName 
+   constructor(name){   {
+   this.firstName= name; 
+   }
+   greet(){
+   return `welcome ${firstName}`
+   }
+   get fname(){
+   return this.#firstName
+   }
+   set fname(name){
+    this.#firstName =name
+   }
+   
+}
+```
+* Prototypal Heirarichy
+```js
+class Person{
+    firstName
+    constructor(name)
+    {
+    this.firstName= name;
+    }
+    greet(){
+        console.log `Hello nice to greet you ${this.firstName}`
+    }
+ }
+ class Tony extends Person{
+ //If no constructor is defined in derived class, compiler will automatically call super() and pass the arguments to parent class
+ //But if create a constructor for this class also then we have to call super() explicitly and pass the argument manually
+ //we can access parent class method using super keyword
+   // super.greet()
+    meet(){
+        console.log `nice to meet you`
+    }
+ }
+
+
+ const me= new Tony('saq')
+ me.greet() //(2) ['Hello nice to greet you ', '', raw: Array(2)] 'saq'
+ me.meet()  //['nice to meet you', raw: Array(1)]
+
+ console.log(me.__proto__) //Person {constructor: ƒ, meet: ƒ} 
+ console.log(me.__proto__.__proto__) //{constructor: ƒ, greet: ƒ}
+ console.log(me.__proto__===Tony.prototype)              //true
+ console.log(me.__proto__.__proto__===Person.prototype)  //true
+ ```
+
+### extends
+* We can use extends to existing/native js type to enhance the property using prototypical inheritance
+```js
+class fn extends Function{
+    add (){
+        console.log("new function added")
+    }
+}
+
+const a= new fn()
+a.bind() //function property is also available to fn
+```
 *****************************************
 ## Function Borrowing
 * polyfill is fallback for browser func
