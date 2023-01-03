@@ -1,5 +1,7 @@
 # learnJS
 ## ExecutionContext
+* Execution context is created whenever we invoke a function.
+   * With execution context it also create this which poinit to the execution context.
 * When code is executed an execution is created. There are two Phase in execution.
     * Memory creation phase
         - Allocate memory to all var and func.
@@ -260,6 +262,31 @@ class fn extends Function{
 const a= new fn()
 a.bind() //function property is also available to fn
 ```
+
+## Symbol
+* The JavaScript ES6 introduced a new primitive data type called Symbol. Symbols are immutable (cannot be changed) and are unique.
+* We use it to create a unique name, so that one cannot accidentally over ride the value or fucntion definition.
+```js
+let fn = Symbol("id");
+
+let person = {
+    name: "Jack",
+
+    // adding symbol as a key
+    [fn]: ()=>{...}  //some important function that you do not want to get override.
+                     // using [] to map the value of fn with the definition.
+                     // other wise fn will be the key for definition
+};
+
+console.log(person); // {name: "Jack", Symbol(fn): func()}
+```
+
+
+## Default Parameters
+* function print(fname,lname='singh')
+* as long as we invoke this function with lname=undefined it will use default param
+* we can even pass print('hllo',undefined) -> will use default param
+
 *****************************************
 ## Function Borrowing
 * polyfill is fallback for browser func
@@ -301,6 +328,13 @@ obj2.getIntro()
 
 *******************************************
 ## This Keyword
+* Whenever a execution context is created it also create this for that context.
+   * if we print value of 'this' in that execution context it will print that function for which EC is created.
+* in case of arrow function no 'this' is assigned to execution context.
+   * so it will look for value in parent execution context and keep going up till it gets the value.
+
+![arrow this](https://user-images.githubusercontent.com/45531263/210327251-ea6a140e-ed0a-4357-9305-d2f66c881e7a.png)
+
 
 ### Normal function
 * If we call a function with *.funcName -> 'this' inside function points to '*'
