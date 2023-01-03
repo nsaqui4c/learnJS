@@ -99,6 +99,22 @@ let a=10
 }
 // here value will be 10 again.
 ```
+### Binding
+* when we assign any value to variable we are binding a memory location to the variable, and that memory location holds a value.
+* So in case we update the value in that memory, the binding will still remain the same, but the variable will now have new value.
+
+### const
+* When we assign new value to const, we are actually [binding](#binding) it to new memory location, which is not allowed.
+ ```js
+const firstName= 'ANthony'
+firstName='Tony'  // Not allowed, as we are binding/assigning new memory location to const
+```
+* But, if we update the property/value of const object instead of assigning new memory, then it is allowed.
+```js
+const user={firstName:'Anthony'}
+user.firstName='tony' //Allowed because const is pointing to same memory, we are changing the value of object
+```
+
 *****************************************
 ## Function Borrowing
 * polyfill is fallback for browser func
