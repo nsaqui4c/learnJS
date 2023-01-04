@@ -36,3 +36,16 @@ function p(){
 }
 
 p()
+
+
+//Multiplication Example
+function multiply(x){
+    return function(y){
+        return function(z){
+            return z*x*y
+        }
+    }
+}
+
+const a = multiply(3)(4)(5);
+console.log(a)
