@@ -406,3 +406,61 @@ console.log(app)
 
 ```
 *******************************************
+## Iterators and Iterables
+* looping using 'in' and 'of'
+```js
+let names =['a','b','c','d']
+
+// in will return key/properties of an object.
+for(name in names){
+    console.log(name)  //-> 0,1,2,3
+}
+
+// of will return value
+for(name of names){
+    console.log(name) //-> a,b,c,d
+}
+```
+### looping using 'in' on object 
+* If we create a object of class, then
+  * all the properties are emurable (including of parent class)
+  * but methods are not part of object, but class prototype, so it will not available
+
+```js
+//Objects
+class Animal{
+    name='dog'
+}
+
+class Dog extends Animal{
+    sound='bark'
+    makeSound(){
+        console.log(this.sound)
+    }
+}
+
+let dog = new Dog()
+
+
+for (const prop in dog){
+    console.log(prop)         //-> name, sound
+}
+console.log(Dog.prototype)    //->Animal {constructor: ƒ, makeSound: ƒ}
+```
+
+* If we create normal object then all properrty including methods are emurable
+  * even the properties of emurable objects down its prototype chain
+```js
+const dog2={
+    sound:'bark',
+    makeSound(){
+        console.log(this.sound)
+    }
+}
+dog2.__proto__={
+residence:'Earth'
+}
+for (const prop in dog2){
+    console.log(prop)         //->  sound, makeSound, residence
+}
+```
