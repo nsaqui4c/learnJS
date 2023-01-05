@@ -504,4 +504,29 @@ for (const prop in dog2){
     console.log(prop)         //->  sound, makeSound, residence
 }
 ```
+### 'in' for array
+* 'in' will return the property of array, which is key
+* in background when we are adding element in array, it is creating new object {key:value}
+* where key is the property and value is value of property(element in array)
+ ```js
+let names =['a','b','c','d']
 
+for(prop in names){
+    console.log(prop)  //-> 0,1,2,3
+}
+```
+
+
+* if we add new property in Array using prototype, then it will also come in iteration
+```js
+Array.prototype.newMethod=()=>{}
+
+for(prop in names){
+    console.log(prop , ':' ,names[prop])  
+
+    //  0 : a
+    //  1 : b
+    //  2 : c
+    //  3 : d
+    //  newMethod : ()=>{}
+```
