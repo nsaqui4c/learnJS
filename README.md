@@ -325,6 +325,46 @@ console.log("but rest value it will take from parent obj1")
 obj2.getIntro()
 
 ```
+## prototype and '__proto__'
+
+* __proto__ is created for every object and everything in js in Object. 
+* __proto__ contains the property of that object along with __proto__ of its parent class.
+* When we create any function, js internally also create a property for that function called 'prototype' along with __proto__.
+* and whenever we create any object using function with 'new' keyword, the prototype came to action, otherwise sits there ideally.
+  * All the object created using new keyword, have their __proto__ created using function.prototype.
+  * so if we add any function in prototype it will be available to all object of that function.
+    * even if we add the method after creating the object, because there proto is pointing to function.prototype
+* all the methods in class are store in prototype and variable in their object
+```js
+class Animal{
+    name='dog'
+}
+
+class Dog extends Animal{
+    sound='bark'
+    makeSound(){
+        console.log(this.sound)
+    }
+}
+
+let dog = new Dog()
+dog.__proto__.add=()=>{console.log('add new items here')}
+
+
+for (const prop in dog){
+    console.log(prop)         //-> name, sound
+}
+
+
+console.log('Dog Prototype')
+console.log(Dog.prototype)    //->Animal {constructor: ƒ, makeSound: ƒ}
+console.log('dog.__proto__')
+console.log(dog.__proto__)    //->Animal {constructor: ƒ, makeSound: ƒ}
+console.log('is equal' , Dog.prototype===dog.__proto__) 
+//becasue dog.__proto__ is pointing to Dog.prototype
+// adding method in dog.__proto__ OR to Dog.prototype will result in changes in same memory location
+
+```
 
 *******************************************
 ## This Keyword
@@ -464,3 +504,4 @@ for (const prop in dog2){
     console.log(prop)         //->  sound, makeSound, residence
 }
 ```
+
