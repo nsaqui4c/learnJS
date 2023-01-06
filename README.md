@@ -104,6 +104,9 @@ let a=10
 ### Binding
 * when we assign any value to variable we are binding a memory location to the variable, and that memory location holds a value.
 * So in case we update the value in that memory, the binding will still remain the same, but the variable will now have new value.
+* i.e in case of object -> const obj={}; obj.add=new value
+![capgemini udemy com_course_understand-javascript_learn_lecture_2237510](https://user-images.githubusercontent.com/45531263/210923179-ff02fd53-41c2-4e34-917e-a79430bf88fd.png)
+
 
 ### const
 * When we assign new value to const, we are actually [binding](#binding) it to new memory location, which is not allowed.
