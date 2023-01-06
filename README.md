@@ -574,3 +574,5 @@ for(prop in names){
     //  3 : d
     //  newMethod : ()=>{}
 ```
+## Extra
+* console.log(typeOf null) //-> object  -> bug since like forever
