@@ -143,6 +143,48 @@ user.firstName='tony' //Allowed because const is pointing to same memory, we are
  ```
  * string will not jsut be 'Hello, ' but will be an array ['Hello, ' , ' ','']
  * because ${first} and ${last} will get interpolated leaving some chracters, which will be part of string
+
+## function statement and expression
+* if any function return value then it is a expression
+* if it doesnot then it is a statement
+```js
+// this is just a statement because we are just adding this fucntion to memory
+function hello(){
+return 'hello'
+}
+//but in this case we are assigning value to var, hence expression
+var fn = function(){..}
+```
+## By value vs by reference
+* In case of primitive type, var points to two different memory location
+```js
+var a=3;
+b;
+b=a;
+//b and a point to two different memory location. changin b will not affect a.
+b=5; // still a will remain 3
+```
+* In case of Object var point to same memory location
+```js
+var c={greeting:'hi'}
+var d;
+d=c;
+// now any chnage in c will also effect d
+
+function changeGreet(obj){
+  obj.greeting='hola'
+  }
+changeGreet(d)  //since d and c pointing to same object greeting of both will be changed.
+console.log(c)  //{grreting:'hola'}
+console.log(d)  //{grreting:'hola'}
+
+```
+** equal operator set new memory location 
+```js
+c = {greeting: 'howdy'}  // now c has all new memory location differnt than d
+console.log(c) //{grreting:'howdy'}
+console.log(d) //{grreting:'hola'} -> d is still pointing to same memory location 
+
 ## constructor
 * Constructor is nothing but function which return new object
   * when we use keyword 'new' it creates a blank object -`{}`
