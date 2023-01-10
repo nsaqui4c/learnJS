@@ -621,3 +621,43 @@ for(prop in names){
 ```
 ## Extra
 * console.log(typeOf null) //-> object  -> bug since like forever
+* issue with 'this' in normal function
+```js
+var c = {
+    name: 'The c object',
+    log: function() {
+        
+        this.name = 'Updated c object';       // this will point to c
+        console.log(this);
+        
+        var setname = function(newname) {
+            this.name = newname;              // this will point to global, because called without any object. SEE BELOW LINE
+        }
+        setname('Updated again! The c object');  // called without any object
+        console.log(self);
+    }
+}
+
+c.log();
+```
+  * to resolce above issue we use
+    * var self= this at top
+```js
+var c = {
+    name: 'The c object',
+    log: function() {
+        var self = this;
+        
+        self.name = 'Updated c object';
+        console.log(self);
+        
+        var setname = function(newname) {
+            self.name = newname;   
+        }
+        setname('Updated again! The c object');
+        console.log(self);
+    }
+}
+
+c.log();
+```
