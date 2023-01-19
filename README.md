@@ -661,3 +661,10 @@ var c = {
 
 c.log();
 ```
+* never press enter JUST AFTER return, because syntax parser will add semicolon at end of line resultin in no return value
+```js
+return  // parser will add seicolon here
+  {
+  //something
+}
+```
