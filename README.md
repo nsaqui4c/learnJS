@@ -674,3 +674,12 @@ return  // parser will add seicolon here
 * <script async src=""> -> In this case html start rendering, download script in async and then execute script by stoping rendering and then render html
 * <>script defer src=""> -> download script in async and execute script once rendering is completed.
 * Async does not maintain the execution of script which may break the code, while defer maintain the execution of code.
+
+
+## event bubling and capturing/trickeling
+![image](https://github.com/nsaqui4c/learnJS/assets/45531263/11acff7f-1b50-494e-8e7b-d11794e6e776)
+
+* addEventListener('click',()=>{},true/false)
+  * we can pass second paramter true or false.
+  * True for event capturing
+  * if we do not pass any value it will be false by default and event bubbling will take place.
