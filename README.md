@@ -668,3 +668,9 @@ return  // parser will add seicolon here
   //something
 }
 ```
+
+## Async and defer
+* <script src= ""> -> In this case html start rendering then script download, then execute then html rendering continue
+* <script async src=""> -> In this case html start rendering, download script in async and then execute script by stoping rendering and then render html
+* <>script defer src=""> -> download script in async and execute script once rendering is completed.
+* Async does not maintain the execution of script which may break the code, while defer maintain the execution of code.
