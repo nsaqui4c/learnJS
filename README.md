@@ -683,3 +683,8 @@ return  // parser will add seicolon here
   * we can pass second paramter true or false.
   * True for event capturing
   * if we do not pass any value it will be false by default and event bubbling will take place.
+
+
+![image](https://github.com/nsaqui4c/learnJS/assets/45531263/6209b77b-25e2-4e44-be78-7b8a408f0c50)
+* If we click on grandparent, it will check it propogation path (bubble or trickle), if bubble than it will just execute grandparent, else it will trickle down
+* If we click on 
