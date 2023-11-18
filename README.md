@@ -689,4 +689,16 @@ return  // parser will add seicolon here
 * If we click on grandparent, it will check it propogation path (bubble or trickle), if bubble than it will just execute grandparent, else it will trickle down
 * If we click on child, then it means that all three div are clicked, then according to w3c full event cycle will run starting from trickling down and then bubbling up
   * That means, since GP is true, and cycle start from capturing than GP will print first, then it comes to parent, and sees it is false, so it leave it, then to child and print the value, and then it start bubbling up and print the parent.
-    
+
+## Event Delegation
+![image](https://github.com/nsaqui4c/learnJS/assets/45531263/90de9a80-fd11-4fa0-a310-a79fffc26fb0)
+* Let say we have a parent div with multiple child div, and we want to open new page on click of child div.
+* In this case rather then attaching eventlistner to each child div we can attach event listner to parent, and because of bubbling up, we can capture the event.
+![image](https://github.com/nsaqui4c/learnJS/assets/45531263/cbfe8662-8e4d-4293-b3fe-46908a70d470)
+```js
+document.querySelector(#category).addEventListner('click',(e)=>{
+console.log(e.target.id)
+window.location.href = "/" + e.target.id
+})
+```
+
