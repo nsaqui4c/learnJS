@@ -25,6 +25,23 @@ window.addEventListner('resize',betterfunction)
 ## Debouncing
 * call a expensive function only if there is certain dealy in the event
 ```js
+const expensive = ()=>{
+// some expensive logic
+}
 
+const debounce =(expensive,delay)=>{
+  let timer;
+  return function(...args){
+    context=this;  // since this function will get return, and we might use this function with some object, we are getting the value of that object in context
+    arg = args
+    clearTimeout(timer) // clearing timeout, if we get another call of the function
+    timer = setTimeout(()=>{  // no event is captured and for specified delay, then only expensive function will be called
+    //expensive()   -> calling function without context
+    expensive.apply(context,arg)
+    },delay)
+  }
+}
 
+const betterFunction  = debounce(expensive,delay)
+window.addEventListner('keyup',betterFunction)
 ```
