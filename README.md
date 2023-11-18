@@ -687,4 +687,6 @@ return  // parser will add seicolon here
 
 ![image](https://github.com/nsaqui4c/learnJS/assets/45531263/6209b77b-25e2-4e44-be78-7b8a408f0c50)
 * If we click on grandparent, it will check it propogation path (bubble or trickle), if bubble than it will just execute grandparent, else it will trickle down
-* If we click on 
+* If we click on child, then it means that all three div are clicked, then according to w3c full event cycle will run starting from trickling down and then bubbling up
+  * That means, since GP is true, and cycle start from capturing than GP will print first, then it comes to parent, and sees it is false, so it leave it, then to child and print the value, and then it start bubbling up and print the parent.
+    
