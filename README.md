@@ -702,3 +702,27 @@ window.location.href = "/" + e.target.id
 })
 ```
 
+## dataset attribute
+* data attributes are basically any attributes on a HTML element who name starts with “data-”.
+```
+//=> "dog" refers to an individual dog object stored in my database
+let dogSpan = document.createElement("span")
+dogSpan.dataset.isGoodDog = dog.isGoodDog 
+dogSpan.innerText = dog.name
+dogBar.append(dogSpan)
+
+
+<div id="dog-bar">  
+  <span data-is-good-dog="true">Mr. Bonkers</span>
+  <span data-is-good-dog="false">Nugget</span>
+  <span data-is-good-dog="true">Skittles</span>
+  <span data-is-good-dog="false">Buttercup</span>
+  <span data-is-good-dog="false">Lucipher</span>
+  <span data-is-good-dog="true">Snooper Pooper</span>
+  <span data-is-good-dog="true">Puddles</span>
+  <span data-is-good-dog="true">Mittens</span>
+  <span data-is-good-dog="false">Middens</span>
+  <span data-is-good-dog="true">Fido</span>
+</div>
+
+```
