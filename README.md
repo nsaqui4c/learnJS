@@ -726,3 +726,15 @@ dogBar.append(dogSpan)
 </div>
 
 ```
+## cookie, session and local storage
+* cookie has least amount of memory, and it get sent on all request made from browser
+* session had min 5mb of memory, but as soon as you close the session or browser the data is gone
+* Hoghest amount of memory and data retail, even after closing of browser. local storage is secure by same origin policy.
+    * tab which are not from among same origin (doamin,subdomain,port, http/https) are not able to access local storage
+* If we are saving object use **JSON.stringify** before storing, and **JSON.parse** after fetching the object
+```js
+localStorage.setItem("hello","world")
+localStorage.getItem("hello")
+localStorage.removeItem("hello")
+localStorage.clear() // will delete everything from localstorage
+```
