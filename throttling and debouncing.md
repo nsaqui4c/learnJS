@@ -45,3 +45,44 @@ const debounce =(expensive,delay)=>{
 const betterFunction  = debounce(expensive,delay)
 window.addEventListner('keyup',betterFunction)
 ```
+
+## learning...
+* we cannot directly call optimized function in getData(), because on every call it will create new optimized function hence a new timer variable.
+* because of which we cannot clear the ealrier timeout
+* creating a global scope variable debounced, we have control to clear the timer
+```js
+function getData() {
+  debounced();
+}
+
+let debounced = optimized()
+
+function optimized() {
+  let timer;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      console.log("function is working", timer);
+    }, 1000);
+  };
+}
+
+```
+* Another way to achieve the same is by using global timer varaible
+```js
+function getData() {
+  debounced();
+}
+
+let timer;
+
+let debounced = function() {
+
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    console.log("function is working", timer);
+  }, 1000);
+
+}
+```
+
