@@ -92,6 +92,12 @@ let a=10
     var a=100  // we cannot shadow let with var since var is global, block does not make any difference.
 }
 
+let b=10
+function hello(){
+    var b=100  // we are allowed to declare like this in function
+}
+
+
 ```
 * However it is legal to shadow let with another let in sifferent scope/block
 ```js
