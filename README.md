@@ -113,6 +113,67 @@ let a=10
 * i.e in case of object -> const obj={}; obj.add=new value
 ![capgemini udemy com_course_understand-javascript_learn_lecture_2237510](https://user-images.githubusercontent.com/45531263/210923179-ff02fd53-41c2-4e34-917e-a79430bf88fd.png)
 
+### Closure
+* used to create private variable
+```js
+function createCounter() {
+    let count = 0; // Private variable
+
+    return function() {
+        count += 1;
+        console.log(count);
+    };
+}
+
+const counter = createCounter();
+counter(); // Output: 1
+counter(); // Output: 2
+counter(); // Output: 3
+```
+* Memoize value
+```js
+function memoize (fun) {
+    let cache ={};
+    return function(arg) {
+        if(cache[arg])
+            return cache[arg]
+        else{
+            let res = fun(arg)
+            cache[arg] = res
+            return res
+        }
+    }
+}
+
+let costly = (arg) =>{
+    console.log("...costsssss")
+    return arg *2
+}
+
+let memoCostly = memoize(costly)
+
+console.log(memoCostly(5)) // run costly func
+console.log(memoCostly(5)) // get value from cache
+console.log(memoCostly(60))// run costly func
+console.log(memoCostly(60))// from cache
+```
+* Partial
+```js
+function multiply(a, b) {
+    return a * b;
+}
+
+function partial(fn, arg1) {
+    return function(arg2) {
+        return fn(arg1, arg2);
+    };
+}
+
+const double = partial(multiply, 2);
+
+console.log(double(5)); // 10
+console.log(double(10)); // 20
+```
 
 ### const
 * When we assign new value to const, we are actually [binding](#binding) it to new memory location, which is not allowed.
