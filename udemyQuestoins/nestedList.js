@@ -54,5 +54,35 @@ const flatList = [
   // }
   //]
 
+function transformToNestedList(flatList) {
+    const itemMap = new Map();
+    const rootItems = [];
+  
+    // First pass: create a map of all items
+    flatList.forEach(item => {
+      itemMap.set(item.id, { id:item.id, children: [] });
+    });
+
+    console.log(itemMap)
+  
+    // Second pass: build the tree structure
+    flatList.forEach(item => {
+      const treeItem = itemMap.get(item.id);
+      if (item.parentId === null) {
+        rootItems.push(treeItem);
+      } else {
+        const parentItem = itemMap.get(item.parentId);
+        parentItem.children.push(treeItem);             // adding to children to parent. Once the parent get added to root, parent will have children already added.
+      }
+      console.log(itemMap)
+    });
+  
+    return rootItems;
+  }
+  
+  // Usage
+  const nestedList = transformToNestedList(flatList);
+  console.log(JSON.stringify(nestedList, null, 2));
+
 
   
