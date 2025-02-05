@@ -79,3 +79,70 @@ first() //regular function call
 /******************************************************** */
  
 //NEVER USE ARROW FUNCTION IN CONSTRUCTOR AND METHOD
+
+
+
+## prbolem when calling function in callback which has this
+Consider this class:
+//////////////////////////
+class MyClass {
+  constructor() {
+    this.name = "MyClass Instance";
+  }
+
+  showName() {
+    console.log(this.name);
+  }
+}
+
+const obj = new MyClass();
+setTimeout(obj.showName, 1000); // Undefined or error!
+
+////////////////////////////
+ 
+Why does it fail?
+setTimeout(obj.showName, 1000); passes showName as a reference without its original this context.
+Inside showName(), this no longer refers to obj. Instead, it refers to window (in browsers) or undefined (in strict mode), causing the issue.
+
+    
+Solution: Using bind(this)
+Now, let’s fix this using bind(this):
+
+js
+class MyClass {
+  constructor() {
+    this.name = "MyClass Instance";
+    this.showName = this.showName.bind(this); // Bind `this` in constructor
+  }
+
+  showName() {
+    console.log(this.name);
+  }
+}
+
+const obj = new MyClass();
+setTimeout(obj.showName, 1000); // Now it prints "MyClass Instance"
+What changed?
+this.showName = this.showName.bind(this); ensures that this inside showName always refers to the instance of MyClass, no matter where it is called.
+
+Alternative Approach (Using Arrow Functions)
+Instead of using .bind(this), you can also use arrow functions:
+
+js
+Edit
+class InventoryConroller {
+  constructor() {
+    this.KafkaService = new KafkaService();
+    this._InventoryService = new InventoryService();
+  }
+
+  allItem = () => {
+    console.log("Fetching inventory...");
+    console.log(this._InventoryService);
+  };
+}
+
+const obj = new InventoryConroller();
+setTimeout(obj.allItem, 1000); // Works fine, no need for bind
+Arrow functions automatically bind this to the class instance, so you don’t need .bind(this).
+
